@@ -2,6 +2,19 @@
 
 A loose collection of cookie clicker mods. 
 
+# To install
+as a bookmarklet: 
+```js
+javascript:(function() {Game.LoadMod('https://adenine-dev.github.io/soggy_cookies/%NAME_OF_MOD_HERE%.js');}());
+```
+
+with [CCMM](https://github.com/klattmose/CookieClickerModManager): 
+```
+https://adenine-dev.github.io/soggy_cookies/%NAME_OF_MOD_HERE%.js
+```
+
+# Mods
+
 ## Lump Vaticinator 
 Modifies the lump tooltip to tell you what type it is in the lump's infancy.
 
