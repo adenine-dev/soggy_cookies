@@ -15,6 +15,9 @@ https://adenine-dev.github.io/soggy_cookies/%NAME_OF_MOD_HERE%.js
 
 # Mods
 
+## Buff Buffs
+Modifies the buff tooltips to show how long the buff has remaining.
+
 ## Lump Vaticinator 
 Modifies the lump tooltip to tell you what type it is in the lump's infancy.
 
