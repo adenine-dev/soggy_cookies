@@ -14,7 +14,6 @@ Game.registerMod('Buff Buffs', {
 
         Game.registerHook('logic', function () {
             if (Object.keys(Game.buffs).length > Game.mods["Buff Buffs"].lastLen) {
-                Game.mods["Buff Buffs"].lastLen = Object.keys(Game.buffs).length
                 Game.buffsL.innerHTML = ""
 
                 var buffs = Object.values(Game.buffs).sort(b => b.id)
@@ -33,6 +32,7 @@ Game.registerMod('Buff Buffs', {
                     buff.l = l('buff' + buff.id)
                 }
             }
+            Game.mods["Buff Buffs"].lastLen = Object.keys(Game.buffs).length
         })
     },
 })
