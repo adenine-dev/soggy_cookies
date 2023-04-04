@@ -15,6 +15,15 @@ https://adenine-dev.github.io/soggy_cookies/%NAME_OF_MOD_HERE%.js
 
 # Mods
 
+## Stonksheet
+Provides an alternate view into the stockmarket, with extended functionality and a smaller vertical footprint.
+
+![screenshot of the stonksheet interface](./screenshots/stonksheet.png)
+
+> **Note**
+> 
+> This uses "newer" browser features (es5) than some of the other mods. tbh tho get a new browser if this doesn't work for you.
+
 ## Buff Buffs
 Modifies the buff tooltips to show how long the buff has remaining.
 
