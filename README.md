@@ -15,7 +15,7 @@ https://adenine-dev.github.io/soggy_cookies/%NAME_OF_MOD_HERE%.js
 
 # Mods
 
-## Seed Seer
+## [Seed Seer](./seed_seer.js)
 Provides a tool that shows all available garden mutations. 
 
 ![screenshot of the seed seer interface](./screenshots/seedseer.png)
@@ -24,22 +24,22 @@ Provides a tool that shows all available garden mutations.
 > 
 > This tool is only unlocked if you have the "seedless to nay" achievement.
 
-## Stonksheet
+## [Stonksheet](./stonksheet.js)
 Provides an alternate view into the stockmarket, with extended functionality and a smaller vertical footprint.
 
 ![screenshot of the stonksheet interface](./screenshots/stonksheet.png)
 
-## Buff Buffs
+## [Buff Buffs](./buff_buffs.js)
 Modifies the buff tooltips to show how long the buff has remaining.
 
-## Lump Vaticinator 
+## [Lump Vaticinator](./lump_vaticinator.js)
 Modifies the lump tooltip to tell you what type it is in the lump's infancy.
 
 > **Warning**
 > 
 > This may be considered cheating to some as it gives information you would otherwise not have access to.
 
-## Golden Hand
+## [Golden Hand](./golden_hand.js)
 Clicks many things automatically. Namely the fortunes, reindeer, golden cookies, and wrath cookies.
 
 > **Warning**
