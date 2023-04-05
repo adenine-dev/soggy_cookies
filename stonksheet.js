@@ -1,5 +1,6 @@
-Game.registerMod('stonksheet', {
+Game.registerMod('stonksheet1', {
     init: function () {
+        Game.mods["stonksheet"] = {}
         const style = document.createElement("style")
         style.innerText = `
             .stonks-swap {
@@ -25,7 +26,7 @@ Game.registerMod('stonksheet', {
                 display: flex;
                 flex-direction: column;
             }
-            .stonksheet .bankGood {
+            .stonksheet .bankGood[style*="display: inline-block"], .stonksheet .sorter {
                 width: auto !important;
                 margin: 1px 2px;
                 display: flex !important;
@@ -94,65 +95,70 @@ Game.registerMod('stonksheet', {
 
         document.head.appendChild(style)
 
-        let header = document.getElementById("bankHeader")
-        let swap = document.createElement("a")
-        swap.classList.add("stonks-swap")
+        let loaded = false
+        function load() {
+            let header = document.getElementById("bankHeader")
+            let swap = document.createElement("a")
+            swap.classList.add("stonks-swap")
 
-        swap.addEventListener("click", () => {
-            PlaySound('snd/tick.mp3');
-            header.classList.toggle("stonksheet")
-        })
-
-        let sorter = document.createElement("div")
-        sorter.classList.add('bankGood', "sorter")
-        let headers = ["#", "", "Ticker", "Value", "Stock"]
-        let subdiv1 = document.createElement("div")
-        for (let i = 0; i < headers.length; i++) {
-            let header = headers[i]
-            let h = document.createElement("a")
-            h.classList.add("bankSymbol")
-
-            if (header == "#") {
-                h.style.height = "auto"
-                h.style.width = "24px"
-                h.style.flex = "unset"
-                h.style.whiteSpace = "nowrap"
-                h.classList.add("anti-up-sort")
-            }
-
-            if (header == "") {
-                h.classList.add("bankSimpleButton")
-                h.style.pointerEvents = "none"
-            }
-
-            h.innerText = header
-            h.addEventListener("click", () => {
-                PlaySound('snd/tick.mp3')
-                for (let j = 0; j < subdiv1.children.length; j++) {
-                    if (i != j)
-                        subdiv1.children[j].classList.remove("sort-up", "sort-down")
-                }
-
-                h.classList.toggle("sort-up", !h.classList.toggle("sort-down"))
-                Game.mods["stonksheet"].sorter_el = h
-                resort()
+            swap.addEventListener("click", () => {
+                PlaySound('snd/tick.mp3');
+                header.classList.toggle("stonksheet")
             })
 
-            subdiv1.appendChild(h)
+            let sorter = document.createElement("div")
+            sorter.classList.add('bankGood', "sorter")
+            let headers = ["#", "", "Ticker", "Value", "Stock"]
+            let subdiv1 = document.createElement("div")
+            for (let i = 0; i < headers.length; i++) {
+                let header = headers[i]
+                let h = document.createElement("a")
+                h.classList.add("bankSymbol")
+
+                if (header == "#") {
+                    h.style.height = "auto"
+                    h.style.width = "24px"
+                    h.style.flex = "unset"
+                    h.style.whiteSpace = "nowrap"
+                    h.classList.add("anti-up-sort")
+                }
+
+                if (header == "") {
+                    h.classList.add("bankSimpleButton")
+                    h.style.pointerEvents = "none"
+                }
+
+                h.innerText = header
+                h.addEventListener("click", () => {
+                    PlaySound('snd/tick.mp3')
+                    for (let j = 0; j < subdiv1.children.length; j++) {
+                        if (i != j)
+                            subdiv1.children[j].classList.remove("sort-up", "sort-down")
+                    }
+
+                    h.classList.toggle("sort-up", !h.classList.toggle("sort-down"))
+                    Game.mods["stonksheet"].sorter_el = h
+                    resort()
+                })
+
+                subdiv1.appendChild(h)
+            }
+
+            let subdiv2 = document.createElement("div")
+            let buyselldiv = document.createElement("div")
+            buyselldiv.classList.add("bankSymbol")
+            buyselldiv.innerText = "Buy / Sell"
+            subdiv2.appendChild(buyselldiv)
+
+            sorter.appendChild(subdiv1)
+            sorter.appendChild(subdiv2)
+
+            header.insertBefore(sorter, document.getElementById("bankGood-0"))
+
+            header.prepend(swap)
+
+            loaded = true
         }
-
-        let subdiv2 = document.createElement("div")
-        let buyselldiv = document.createElement("div")
-        buyselldiv.classList.add("bankSymbol")
-        buyselldiv.innerText = "Buy / Sell"
-        subdiv2.appendChild(buyselldiv)
-
-        sorter.appendChild(subdiv1)
-        sorter.appendChild(subdiv2)
-
-        header.insertBefore(sorter, document.getElementById("bankGood-0"))
-
-        header.prepend(swap)
 
         function resort() {
             if (document.getElementById("bankHeader").classList.contains("stonksheet")
@@ -174,7 +180,10 @@ Game.registerMod('stonksheet', {
         }
 
         Game.registerHook('logic', () => {
-            if (Game.Objects["Bank"].minigame.toRedraw) {
+            if (!loaded && Game.ObjectsById[5].minigame && Game.ObjectsById[5].minigameLoaded) {
+                load()
+            }
+            if (loaded && Game.Objects["Bank"].minigame.toRedraw) {
                 resort()
             }
         })
