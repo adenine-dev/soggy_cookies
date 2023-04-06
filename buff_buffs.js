@@ -3,7 +3,7 @@ Game.registerMod('Buff Buffs', {
         // Game.mods["Buff Buffs"] = {}
         Game.mods["Buff Buffs"].buffTooltip = function (name) {
             return '<div class="prompt" style="min-width:200px;text-align:center;font-size:11px;margin:8px 0px;" id="tooltipBuff"><h3>'
-                + Game.buffs[name].dname
+                + (Game.buffs[name].dname || loc(obj.name))
                 + '</h3><div class="line"></div>'
                 + Game.buffs[name].desc
                 + '<div class="line"></div>'
