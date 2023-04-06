@@ -191,15 +191,32 @@ Game.registerMod('Seed Seer', {
                     if (lockedSeeds.length == 0) {
                         info += "<p>You've unlocked all the seeds!</p>"
                     } else {
-                        let unlockedSeeds = minigame.plantsById.filter(p => p.unlocked)
-                            .concat(minigame.plot.flat().map(p => p[0] == 0 ? null : minigame.plantsById[p[0] - 1]).filter(p => p))
+                        let plotPlants = minigame.plot.flat()
+                            .reduce((a, c) => {
+                                if (c[0] > 0) {
+                                    if (!a[c[0] - 1]) {
+                                        a[c[0] - 1] = { amt: 1, plant: minigame.plantsById[c[0] - 1] }
+                                    } else {
+                                        a[c[0] - 1].amt++
+                                    }
+                                }
+                                return a
+                            }, []).filter(p => p)
+                        let unlockedSeeds = minigame.plantsById
+                            .filter(p => p.unlocked)
+                            .map(plant => ({ plant, amt: Infinity }))
+                            .concat(
+                                plotPlants
+                                // .map(p => p[0] == 0 ? null : ({ amt: 0, plant: minigame.plantsById[p[0] - 1] })).filter(p => p)
+                            )
+
                         let mutablePlants = lockedSeeds.map((seed) => {
                             let mutations = Game.mods['Seed Seer'].mutations[seed.key].filter(mut =>
-                                mut.parents.filter(p => !unlockedSeeds.some(us => us.key == p.plant)).length == 0
+                                mut.parents.filter(p => !unlockedSeeds.some(us => us.plant.key == p.plant && us.amt >= p.n)).length == 0
                             )
                             if (!mutations.length) return false
                             return { seed, mutations }
-                        }).filter(seed => seed)
+                        }).filter(p => p && !plotPlants.some(pp => pp.plant.id == p.seed.id))
                         for (let i = 0; i < mutablePlants.length; i++) {
                             let plant = mutablePlants[i]
                             plant.mutations.sort((a, b) => b.chance - a.chance)
