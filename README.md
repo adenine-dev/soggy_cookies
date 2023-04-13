@@ -15,6 +15,16 @@ https://adenine-dev.github.io/soggy_cookies/%NAME_OF_MOD_HERE%.js
 
 # Mods
 
+## [Caster Sugar](./caster_sugar.js)
+Adds a spell forecast view in the grimoire. Also adds a button that sells enough wizard towers such that your max magic is your current magic.
+
+![screenshot of the caster sugar interface](./screenshots/castersugar.png)
+
+> **Note**
+>
+> This is probably cheating since it lets you see the result of the next spells.
+
+
 ## [Commander](./commander.js)
 Swaps ctrl hotkeys to be cmd hotkeys on macos.
 
