@@ -15,6 +15,14 @@ https://adenine-dev.github.io/soggy_cookies/%NAME_OF_MOD_HERE%.js
 
 # Mods
 
+## [Commander](./commander.js)
+Swaps ctrl hotkeys to be cmd hotkeys on macos.
+
+> **Note**
+>
+> Does not disable ctrl hotkeys (for compatibility reasons) or change the text (for localization and laziness reasons).
+
+
 ## [Seed Seer](./seed_seer.js)
 Provides a tool that shows all available garden mutations. 
 
