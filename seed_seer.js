@@ -205,10 +205,7 @@ Game.registerMod('Seed Seer', {
                         let unlockedSeeds = minigame.plantsById
                             .filter(p => p.unlocked)
                             .map(plant => ({ plant, amt: Infinity }))
-                            .concat(
-                                plotPlants
-                                // .map(p => p[0] == 0 ? null : ({ amt: 0, plant: minigame.plantsById[p[0] - 1] })).filter(p => p)
-                            )
+                            .concat(plotPlants)
 
                         let mutablePlants = lockedSeeds.map((seed) => {
                             let mutations = Game.mods['Seed Seer'].mutations[seed.key].filter(mut =>
