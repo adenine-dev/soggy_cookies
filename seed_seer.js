@@ -236,7 +236,7 @@ Game.registerMod('Seed Seer', {
                 },
                 // isDisplayed: function () { return Game.HasAchiev('Seedless to nay') },
             }
-            minigame.toolsById = []; var n = 0; for (var i in minigame.tools) { minigame.tools[i].id = n; minigame.tools[i].key = i; minigame.toolsById[n] = minigame.tools[i]; n++; }
+            minigame.toolsById = []; var n = 0; for (var i in minigame.tools) { minigame.tools[i].id = n; minigame.tools[i].key = i; minigame.toolsById[n] = minigame.tools[i]; n++ }
             minigame.buildPanel()
 
             let style = document.createElement("style")
@@ -258,7 +258,7 @@ Game.registerMod('Seed Seer', {
         }
 
         function loader() {
-            if (!loaded && Game.ObjectsById[2].minigame && Game.ObjectsById[2].minigameLoaded && Game.HasAchiev('Seedless to nay')) {
+            if (!loaded && Game.ObjectsById[2].minigame && Game.ObjectsById[2].minigameLoaded /*&& Game.HasAchiev('Seedless to nay')*/) {
                 load()
                 Game.removeHook("logic", loader)
             }
